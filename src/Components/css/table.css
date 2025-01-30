@@ -1,0 +1,92 @@
+/* Base Table Styles */
+.base-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    text-align: left;
+    background-color: white;
+    color: #333; /* Default text color */
+}
+
+.table-header {
+    background-color: #f2f2f2;
+}
+
+.table-header-row {
+    border-bottom: 2px solid #ddd;
+}
+
+.table-header-cell {
+    padding: 12px 15px;
+    font-weight: bold;
+}
+
+.table-body-row {
+    border-bottom: 1px solid #ddd;
+}
+
+.table-body-cell {
+    padding: 12px 15px;
+}
+
+.table-body-row:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+.table-body-row:hover {
+    background-color: #f1f1f1;
+}
+
+/* Expandable List Styles */
+.expandable-list-container {
+    position: relative; /* Ensure the container is positioned relative to allow absolute positioning of the expandable list */
+    width: 100%;
+}
+
+.expandable-list {
+    margin-top: 0; /* Remove margin to make it look like part of the button */
+    color: #333; /* Default text color */
+    position: absolute; /* Position the expandable list absolutely */
+    background-color: rgb(254, 254, 254);
+    border: 1px solid #ddd; /* Add a border to the list */
+    z-index: 1; /* Ensure it appears above other content */
+    width: 100%; /* Make it full width */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.expandable-list-button {
+    background-color: transparent;
+    color: #333; /* Default text color */
+    border-radius: 0px;
+
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; /* Make it full width */
+    text-align: left; /* Align text to the left */
+}
+.expandable-list-button:focus {
+    outline: none; /* Remove the default focus outline */
+}
+
+.expandable-list-button:hover {
+    outline: none; /* Remove the default focus outline */
+    border-color: transparent; /* Remove the border color on hover */
+    color: rgb(0, 0, 0);
+    background-color: #e0e0e0;
+    transition: color 0.3s ease;
+}
+
+.expandable-list-items {
+    margin: 0; /* Remove margin to make it look like part of the button */
+    color: #333; /* Default text color */
+    padding-left: 0px;
+    margin-top: 20px
+}
+
+.expandable-list-item {
+    list-style-type: none; /* Remove bullet points */
+    padding: 5px;
+    border-bottom: 1px solid #333;
+    margin-inline-start: -40px;
+    text-align: center;
+}

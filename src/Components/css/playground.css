@@ -1,0 +1,181 @@
+.playground {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.auth-status {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.red {
+    color: red;
+    font-size: 30px;
+}
+
+.green {
+    color: rgb(0, 255, 0);
+    font-size: 30px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+.section-header {
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.action-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+.auth-button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+/* Set different background colors for the first four auth buttons */
+.auth-button:nth-child(1) {
+    background-color: #8000ff; /* Blue */
+}
+
+.auth-button:nth-child(2) {
+    background-color: #28a745; /* Green */
+}
+
+.auth-button:nth-child(3) {
+    background-color: #008cc8; /* Yellow */
+}
+
+.auth-button:nth-child(4) {
+    background-color: #91343d; /* Red */
+}
+
+.auth-button:hover {
+    opacity: 0.8; /* Slightly reduce opacity on hover for all auth buttons */
+}
+
+.table-button {
+    background-color: #259636;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+.table-button:hover {
+    background-color: #059700ae;
+}
+
+.table-display {
+    align-self: center;
+    width: 100%;
+    margin: 10px;
+    margin-top: 30px;
+    border-collapse: collapse;
+    border: 10px solid #8d4848ad;
+    padding: 0px;
+    box-shadow: 0px 0px 20px #ffffff79;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-form, .course-form {
+    margin-bottom: 20px;
+}
+
+.user-form input, .course-form input, .course-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-form button, .course-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.user-form button:hover, .course-form button:hover {
+    background-color: #0056b3;
+}
+
+.section {
+    margin: 0px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    align-items: center;
+}
+
+.generate {
+    background-color: #2ea692;
+}
+
+.clear {
+    background-color: #831a13;
+}
+
+.student {
+    color: #9a53ff; 
+}
+
+.teacher {
+    color: rgb(0, 222, 0)
+}
+
+.admin {
+    color: #10b2f8
+}
+
+.unauthorized {
+    color: #c2a7a0; /* Gray */
+}
+
+.select {
+    color: rgb(255, 46, 9)   ;
+}
