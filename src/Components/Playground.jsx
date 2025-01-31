@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import StudentsTable from "./tables/Students";
 import CoursesTable from "./tables/Courses";
 import UsersTable from "./tables/Users";
 import TeachersTable from "./tables/Teachers";
 import EnrollmentsTable from "./tables/Enrollments";
 import AdminsTable from "./tables/Admins";
-import getLists from '../service/tables/getLists';
+import getLists from '../service/getLists';
 import handleLogin from '../service/accounts/handleLogin';
 import handleLogout from '../service/accounts/handleLogout';
 import { handleClear, handleGenerate } from '../service/new_data_set';
+import { useAppContext } from '../AppContext';
 import './css/playground.css';
 
 const tableComponents = {
@@ -37,34 +38,40 @@ const Playground = () => {
     const [authStatus, setAuthStatus] = useState('select an option');
     const [tableView, setTableView] = useState('normal');
     const [permissionDenied, setPermissionDenied] = useState(false);
+    const { filtersOn, setFiltersOn, viewObject, setViewObject } = useAppContext();
 
-    // useEffect(() => {
-    //     console.log("currentTable: ", currentTable);    
-    // })
+    const toggleView = () => {
+        const newView = tableView === 'normal' ? 'browse' : 'normal';
+        setTableView(newView);
+        if (currentTable) {
+            handleTableSelection(currentTable, newView);
+        }
+    };
+
     // ----------------------------------------
     // Handlers
     // ----------------------------------------
 
-    const handleTableSelection = async (table) => {
+    const handleTableSelection = async (table, declaredView=null) => {
+        if (!declaredView) {
+            declaredView = tableView
+        }
         table = table.toLowerCase();
-        
-        if (currentTable !== table) {
-            
-            try {
-                const data = await getLists(table, tableView);
-                setTableData(data);
-                setCurrentTable(table);
-                setPermissionDenied(false);
-            } catch (error) {
-                setPermissionDenied(true);
-                setCurrentTable(null);
-                if (error.response && error.response.status === 403) {
-                    alert("Access denied. You do not have permission to view this data.");
-                } else {
-                    console.error("Error fetching table data:", error);
-                }
+        try {
+            const data = await getLists(table, declaredView);
+            setTableData(data);
+            setCurrentTable(table);
+            setPermissionDenied(false);
+        } catch (error) {
+            setPermissionDenied(true);
+            setCurrentTable(null);
+            if (error.response && error.response.status === 403) {
+                alert("Access denied. You do not have permission to view this data.");
+            } else {
+                console.error("Error fetching table data:", error);
             }
         }
+        
     };
 
     const handleUserInputChange = (e) => {
@@ -115,24 +122,6 @@ const Playground = () => {
         setPermissionDenied(false);
     }
 
-    const toggleView = () => {
-        console.log("Current Table: ", currentTable);
-        if (authStatus === 'student' && currentTable == 'courses') {
-            if (tableView === 'browse') {
-                setPermissionDenied(true);
-                console.log("Cannot view this table outside of browse mode");
-                return;
-            }
-            else {
-                console.log("Toggling view mode");
-                setTableView('browse');
-                setPermissionDenied(false);
-                handleTableSelection(currentTable); 
-            }
-
-        }
-        setTableView(tableView === 'normal' ? 'browse' : 'normal')
-    }
 
 
     // ----------------------------------------
@@ -163,8 +152,8 @@ const Playground = () => {
             <div className='s-tables section'>
                 <h2>Tables</h2>
                 <div className="row">
-                    <button className="action-button" onClick={() => resetTables()}>Toggle Tables</button>
-                    <button className="action-button" onClick={() => toggleView()}>Current View Mode: '{tableView.charAt(0).toUpperCase() + tableView.slice(1)}'</button>
+                    <button className="reset action-button" onClick={() => resetTables()}>Reset Tables</button>
+                    <button className="view action-button" onClick={() => toggleView()}>Table View: {tableView.charAt(0).toUpperCase() + tableView.slice(1)}</button>
                 </div>
                 <div className="row">
                     {['Users', 'Students', 'Teachers', 'Admins', 'Courses', 'Enrollments'].map((table) => (
@@ -172,10 +161,14 @@ const Playground = () => {
                             {table}
                         </button>
                     ))}
+                    
+                    <button className='table-button filters' onClick={() => setFiltersOn(!filtersOn)}>
+                        {filtersOn ? 'Filters On' : 'Filters Off'}
+                    </button>
+                    <div className={TableComponent ? 'table-display' : ''}>
 
-                <div className="table-display">
-                    {TableComponent && <TableComponent data={tableData} tableView={tableView} />}
-                </div>
+                        {TableComponent && <TableComponent data={tableData} tableView={tableView} />}
+                    </div>
                 </div>
             </div>
             

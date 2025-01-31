@@ -31,7 +31,7 @@ const StudentsTable = ({ data}) => {
         []
     );
 
-    return <BaseTable data={data} columns={columns}/>
+    return <BaseTable data={data} columns={columns} rowType='users'/>
 };
 
 export default StudentsTable;

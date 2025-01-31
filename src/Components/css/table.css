@@ -90,3 +90,22 @@
     margin-inline-start: -40px;
     text-align: center;
 }
+
+.hidden {
+    display: none;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    justify-self: flex-start;
+    margin-left: 5px    ;
+  }
+  
+.filter-input {
+    align-self: flex-end;
+    background-color: #f9f9f9;
+    border-color: antiquewhite;
+    color:#333;
+  }

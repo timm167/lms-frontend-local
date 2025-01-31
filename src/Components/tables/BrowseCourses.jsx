@@ -21,7 +21,8 @@ const BrowseCourses = ({ data}) => {
         []
     );
 
-    return <BaseTable data={data} columns={columns}/>
+    // Do something diffent here i.e. a sign up button to enroll in a course
+    return <BaseTable data={data} columns={columns} rowType='courses'/>
 };
 
 export default BrowseCourses;

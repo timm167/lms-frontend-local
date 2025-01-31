@@ -31,7 +31,7 @@ const EnrollmentsTable = ({ data }) => {
     []
   );
 
-  return <BaseTable data={data} columns={columns}/>
+  return <BaseTable data={data} columns={columns} rowType='enrollments'/>
 };
 
 export default EnrollmentsTable;

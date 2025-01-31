@@ -55,7 +55,7 @@ const CoursesTable = ({ data, tableView }) => {
         []
     );
 
-    return <BaseTable data={data} columns={columns}/>
+    return <BaseTable data={data} columns={columns} rowType='courses'/>
 };
 
 
