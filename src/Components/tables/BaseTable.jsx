@@ -1,10 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { useTable, useExpanded, useFilters, useSortBy } from 'react-table';
 import '../css/table.css';
-import { handleGetRowItem } from '../../service/getObjects';
+import { handleGetRowItem } from '../../service/get/getObjects';
 import { useAppContext } from '../../AppContext';
 
-// Default filter UI
 const DefaultColumnFilter = ({
     column: { filterValue, preFilteredRows, setFilter },
 }) => {
@@ -23,7 +22,7 @@ const DefaultColumnFilter = ({
 };
 
 const BaseTable = ({ data, columns, rowType }) => {
-    const { setViewObject, filtersOn } = useAppContext();
+    const { setViewObject, filtersOn, setTableData } = useAppContext();
 
 
     const defaultColumn = useMemo(
@@ -45,15 +44,18 @@ const BaseTable = ({ data, columns, rowType }) => {
             data,
             defaultColumn, // Be sure to pass the defaultColumn option
         },
-        useFilters, // Use the useFilters hook
-        useSortBy,  // Use the useSortBy hook
+        useFilters, 
+        useSortBy,
         useExpanded
     );
 
-    const handleRowClick = async (row) => {
-        console.log(rowType);
+    const handleRowClick = async (event, row) => {
+        if (event.target.tagName.toLowerCase() === 'button') {
+            return;
+        }
         try {
             const viewObject = await handleGetRowItem(row.original, rowType);
+            console.log(viewObject);
             setViewObject(viewObject);
         } catch (error) {
             console.error(error);
@@ -100,7 +102,7 @@ const BaseTable = ({ data, columns, rowType }) => {
                     prepareRow(row);
                     const { key: rowKey, ...rowProps } = row.getRowProps();
                     return (
-                        <tr key={rowKey || rowIndex} {...rowProps} className="table-body-row" onClick={() => handleRowClick(row)}>
+                        <tr key={rowKey || rowIndex} {...rowProps} className="table-body-row" onClick={(e) => handleRowClick(e, row)}>
                             {row.cells.map((cell, cellIndex) => {
                                 const { key: cellKey, ...cellProps } = cell.getCellProps();
                                 return (
@@ -119,9 +121,9 @@ const BaseTable = ({ data, columns, rowType }) => {
 
 const ExpandableList = ({ data, label, itemKey, itemLabel }) => {
     const [isExpanded, setIsExpanded] = React.useState(false);
+    if (!data || data.length == 0) return <span>No {label}</span>;
     const numItems = data.length;
 
-    if (!data || numItems === 0) return <span>No {label}</span>;
 
     return (
         <div className="expandable-list-container">
@@ -143,4 +145,4 @@ const ExpandableList = ({ data, label, itemKey, itemLabel }) => {
     );
 };
 
-export { ExpandableList, BaseTable };
+export { ExpandableList, BaseTable, DefaultColumnFilter };

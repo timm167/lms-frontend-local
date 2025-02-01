@@ -22,7 +22,7 @@ const handleGetRowItem = async (row, rowType) => {
         const errorData = await response.json();  
         throw { status: response.status, message: errorData.detail || "An error occurred" };
     }
-
+    
     return response.json();
 }
 

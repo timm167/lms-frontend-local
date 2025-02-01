@@ -1,37 +1,69 @@
 import React, { useMemo } from 'react';
-import { BaseTable } from './BaseTable';
+import { DefaultColumnFilter, BaseTable } from './BaseTable';
+import { courseFilter, studentFilter, completionStatusFilter } from './filters/enrollmentsFilters';
+import performCourseManagerAction from '../../service/courseManagerActions';
+import { useAppContext } from '../../AppContext';
+import getLists from '../../service/get/getLists';
 
 const EnrollmentsTable = ({ data }) => {
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'Enrollment ID',
-        accessor: 'id',
-      },
-      {
-        Header: 'Course',
-        accessor: 'course',
-        Cell: ({ value }) => value.title, // Assuming course is an object with a title property
-      },
-      {
-        Header: 'Student',
-        accessor: 'student',
-        Cell: ({ value }) => value.full_name, // Assuming student is an object with a full_name property
-      },
-      {
-        Header: 'Date Enrolled',
-        accessor: 'enrollment_date',
-      },
-      {
-        Header: 'Completion Status',
-        accessor: 'completed',
-        Cell: ({ value }) => (value ? 'Completed' : 'In Progress'), // Assuming completed is a boolean
-      },
-    ],
-    []
-  );
+    const {setTableData, tableView } = useAppContext();
 
-  return <BaseTable data={data} columns={columns} rowType='enrollments'/>
-};
+    const handleUnenrollClick = async(row) => {
+        await performCourseManagerAction({
+          action: 'unenroll_student',
+          course_id: row.original.course.id,
+          user_id: row.original.student.user_id
+        });
+        const newTableData = await getLists('enrollments',tableView);
+        setTableData(newTableData);
+    };  
+
+  
+    const columns = useMemo(
+        () => [
+            {
+                Header: 'Course',
+                accessor: 'course',
+                Cell: ({ value }) => value.title,
+                Filter: DefaultColumnFilter,
+                filter: courseFilter,
+            },
+            {
+                Header: 'Student',
+                accessor: 'student',
+                Cell: ({ value }) => value.full_name,
+                Filter: DefaultColumnFilter,
+                filter: studentFilter,
+            },
+            {
+                Header: 'Date Enrolled',
+                accessor: 'enrollment_date',
+                Filter: DefaultColumnFilter,
+            },
+            {
+                Header: 'Completion Status',
+                accessor: 'completed',
+                Filter: DefaultColumnFilter,
+                filter: completionStatusFilter,
+                Cell: ({ value }) => (value ? 'Completed' : 'In Progress'),
+            },
+            {
+                Header: 'Unenroll student',
+                accessor: 'course_id',
+                Filter: DefaultColumnFilter,
+                Cell: ({ row }) => {
+                    return (
+                        <button onClick={() => handleUnenrollClick(row)}>
+                            Unenroll
+                        </button>
+                    );
+                },
+            }
+        ],
+        []
+    );
+
+    return <BaseTable data={data} columns={columns} rowType='enrollments'/>
+}
 
 export default EnrollmentsTable;

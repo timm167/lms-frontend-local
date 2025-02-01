@@ -5,12 +5,13 @@ import UsersTable from "./tables/Users";
 import TeachersTable from "./tables/Teachers";
 import EnrollmentsTable from "./tables/Enrollments";
 import AdminsTable from "./tables/Admins";
-import getLists from '../service/getLists';
+import getLists from '../service/get/getLists';
 import handleLogin from '../service/accounts/handleLogin';
 import handleLogout from '../service/accounts/handleLogout';
 import { handleClear, handleGenerate } from '../service/new_data_set';
 import { useAppContext } from '../AppContext';
 import './css/playground.css';
+
 
 const tableComponents = {
     students: StudentsTable,
@@ -32,13 +33,11 @@ const Playground = () => {
     // ----------------------------------------
 
     const [currentTable, setCurrentTable] = useState(null);
-    const [tableData, setTableData] = useState([]);
     const [userData, setUserData] = useState({ username: '', email: '' });
     const [courseData, setCourseData] = useState({ courseName: '', courseDescription: '' });
     const [authStatus, setAuthStatus] = useState('select an option');
-    const [tableView, setTableView] = useState('normal');
     const [permissionDenied, setPermissionDenied] = useState(false);
-    const { filtersOn, setFiltersOn, viewObject, setViewObject } = useAppContext();
+    const { filtersOn, setFiltersOn, viewObject, setViewObject, tableData, setTableData, tableView, setTableView } = useAppContext();
 
     const toggleView = () => {
         const newView = tableView === 'normal' ? 'browse' : 'normal';
@@ -129,6 +128,8 @@ const Playground = () => {
     // ----------------------------------------
 
     return (
+        // MAKE MY COURSE MANAGER ACTIONS WORK WITH THE DATABASE AND DISPLAY IN THE TABLES
+        // Add user, add course
         <div className="playground">
             <h2 className={permissionDenied ? 'red' : 'green'}>{permissionDenied ? 'Permission Denied' : 'Everything is okay!'}</h2>
             <div className="row">
@@ -163,7 +164,7 @@ const Playground = () => {
                     ))}
                     
                     <button className='table-button filters' onClick={() => setFiltersOn(!filtersOn)}>
-                        {filtersOn ? 'Filters On' : 'Filters Off'}
+                        {filtersOn ? 'Filters Are On' : 'Filters Are Off'}
                     </button>
                     <div className={TableComponent ? 'table-display' : ''}>
 

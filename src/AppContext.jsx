@@ -7,10 +7,13 @@ const AppContext = createContext();
 export function AppProvider({ children }) {
     const [filtersOn, setFiltersOn] = useState(false);
     const [viewObject, setViewObject] = useState(null);
+    const [tableData, setTableData] = useState([]);
+    const [tableView, setTableView] = useState('normal');
+
 
 
   return (
-    <AppContext.Provider value={{ filtersOn, setFiltersOn, viewObject, setViewObject }}>
+    <AppContext.Provider value={{ filtersOn, setFiltersOn, viewObject, setViewObject, tableData, setTableData, tableView, setTableView }}>
       {children}
     </AppContext.Provider>
   );

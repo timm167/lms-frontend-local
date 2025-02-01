@@ -1,7 +1,17 @@
 import React, { useMemo } from 'react';
 import { BaseTable } from './BaseTable';
+import deleteUser from '../../service/users/deleteUser'
+import { useAppContext } from '../../AppContext';
+import getLists from '../../service/get/getLists';
 
 const UsersTable = ({ data }) => {
+    const { setTableData, tableView } = useAppContext();
+    
+    const handleDeleteClick = async(user_id) => {
+        await deleteUser({user_id: user_id})
+        const newTableData = await getLists('users',tableView);
+        setTableData(newTableData);
+    }
     const columns = useMemo(() => [
         {
             Header: 'User ID',
@@ -27,6 +37,13 @@ const UsersTable = ({ data }) => {
             Header: 'Role',
             accessor: 'role',
         },
+        {
+            Header: 'Delete User',
+            Filter: false,
+            Cell: ({ row }) => (
+                <button onClick={() => handleDeleteClick(row.original.user_id)}>Delete</button>
+            )
+        }
     ], []);
 
     return <BaseTable data={data} columns={columns} rowType='users'/>;

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import {BaseTable, ExpandableList} from './BaseTable';
+import {listContainsCourseFilter} from './filters/listContainsFilters';
 
 const TeachersTable = ({ data }) => {
     const columns = useMemo(() => [
@@ -22,6 +23,7 @@ const TeachersTable = ({ data }) => {
         {
             Header: 'Courses',
             accessor: 'teaching_courses',
+            filter: listContainsCourseFilter,
             Cell: ({ row }) => (
                 <ExpandableList data={row.original.teaching_courses} label="Courses" itemKey="course_id" itemLabel="title" />
             ),

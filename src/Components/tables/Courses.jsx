@@ -1,13 +1,26 @@
 import React, { useMemo } from 'react';
 import BrowseCourses from './BrowseCourses';
-import {ExpandableList, BaseTable} from './BaseTable';
+import {ExpandableList, BaseTable, DefaultColumnFilter} from './BaseTable';
+import {listContainsNameFilter, listContainsLessonFilter, listContainsAssignmentFilter }from './filters/listContainsFilters';
+import teacherInCourseFilter from './filters/teacherInCourseFilter';
+import performCourseManagerAction from '../../service/courseManagerActions';
+import { useAppContext } from '../../AppContext';
+import getLists from '../../service/get/getLists';
 
-const CoursesTable = ({ data, tableView }) => {
+const CoursesTable = ({ data}) => {
+    const { setTableData, tableView } = useAppContext();
     if (tableView === 'browse') {
         return (
             <BrowseCourses data={data} />
         );
     }
+
+    const handleDelete = async (course_id) => {
+        await performCourseManagerAction({action: 'delete_course', course_id: course_id})
+        const newTableData = await getLists('courses',tableView);
+        setTableData(newTableData);
+    }
+    
     const columns = useMemo(
         () => [
             {
@@ -25,6 +38,7 @@ const CoursesTable = ({ data, tableView }) => {
             {
                 Header: 'Teacher',
                 accessor: 'teacher',
+                filter: teacherInCourseFilter,
                 Cell: ({ row }) => {
                     const teacher = row.original.teacher;
                     return teacher ? teacher.full_name : 'No teacher assigned';
@@ -33,6 +47,7 @@ const CoursesTable = ({ data, tableView }) => {
             {
                 Header: 'Students',
                 accessor: 'students',
+                filter: listContainsNameFilter,
                 Cell: ({ row }) => (
                     <ExpandableList data={row.original.students} label="Students" itemKey="user_id" itemLabel="full_name" />
                 ),
@@ -40,6 +55,7 @@ const CoursesTable = ({ data, tableView }) => {
             {
                 Header: 'Lessons',
                 accessor: 'lessons',
+                filter: listContainsLessonFilter,
                 Cell: ({ row }) => (
                     <ExpandableList data={row.original.lessons} label="Lessons" itemKey="lesson_id" itemLabel="title" />
                 ),
@@ -47,10 +63,18 @@ const CoursesTable = ({ data, tableView }) => {
             {
                 Header: 'Assignments',
                 accessor: 'assignments',
+                filter: listContainsAssignmentFilter,
                 Cell: ({ row }) => (
                     <ExpandableList data={row.original.assignments} label="Assignments" itemKey="assignment_id" itemLabel="title" />
                 ),
             },
+            {
+                Header: 'Delete Course',
+                Filter: false,
+                Cell: ({ row }) => (
+                    <button onClick={() => handleDelete(row.original.id)}>Delete</button>
+                )
+            }
         ],
         []
     );
