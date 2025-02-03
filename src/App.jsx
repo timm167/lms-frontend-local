@@ -40,9 +40,7 @@ function App() {
 
 
         // Tidy code base front and back end
-        // Build a simple header to navigate between pages
-        // Make a simple home page to browse courses.
-        // Design all my elements
+
   return (
     <>
       <Header/>

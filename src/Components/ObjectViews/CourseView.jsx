@@ -22,7 +22,7 @@ function CourseView() {
 
     return (
         <CustomContainer>
-            <Box sx={{ width: '100%', fontSize: '1.2rem' }}>
+            <Box sx={{ width: '100%', fontSize: '1.5rem' }}>
                 {/* Course Header */}
                 <Typography variant="h4" sx={{ mb: 2, color: 'black' }}>
                     {viewObject.title}
