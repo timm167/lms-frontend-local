@@ -1,8 +1,13 @@
 const handleGetRowItem = async (row, rowType) => {
+    console.log(row, rowType);
     const token = localStorage.getItem('token');
     let id = 0;
+    
     if (['students', 'teachers', 'admins', 'users'].includes(rowType)) {
         id = row.user_id;
+    } else if (['enrollments'].includes(rowType)) {
+        id = row.course.id;
+        rowType = 'courses';
     } else {
         id = row.id;
     }
@@ -26,8 +31,4 @@ const handleGetRowItem = async (row, rowType) => {
     return response.json();
 }
 
-const HandleGetObjects = async (req, res) => {
-
-}
-
-export {handleGetRowItem, HandleGetObjects};
+export {handleGetRowItem};

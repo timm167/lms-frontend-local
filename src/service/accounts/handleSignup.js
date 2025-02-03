@@ -1,7 +1,6 @@
 import handleLogin from "./handleLogin";
 
-const handleSignup = async (first_name, last_name, username, email, password, role) => {
-    console.log(first_name, last_name, username, email, password, role);
+const handleSignup = async (authStatus, first_name, last_name, username, email, password, role) => {
     const response = await fetch('http://localhost:8000/accounts/signup/', {
       method: 'POST',
       headers: {
@@ -23,8 +22,9 @@ const handleSignup = async (first_name, last_name, username, email, password, ro
     // Check if the signup was successful
     if (response.ok) {
 
-      // Add to local storage so I can add to headers later
-      localStorage.setItem('token', data.token);
+      if (authStatus !== 'admin'){
+        localStorage.setItem('token', data.token);
+      }
   
       // Return success and the token
       return {
@@ -34,6 +34,13 @@ const handleSignup = async (first_name, last_name, username, email, password, ro
       };
     } else {
       try {
+        if (action == 'create'){
+          console.log('User Already Exists')
+          return {
+            success: false,
+            message: 'User Already Exists',
+          };
+        }
         handleLogin(username, password)
         console.log("Account already exists, logging in instead")
       } catch (error) {console.error('Signup failed:', data.error || 'Unknown error');}

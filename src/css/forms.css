@@ -1,0 +1,19 @@
+.login-instead {
+    position: absolute; /* Position it absolutely within its container */
+    top: 10px; /* Adjust the top position as needed */
+    left: 10px; /* Adjust the left position as needed */
+    font-size: 12px; /* Make the text small */
+}
+
+.login-instead button {
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    color: #007BFF; /* Set button text color */
+    cursor: pointer; /* Change cursor to pointer */
+    font-size: 12px; /* Make the button text small */
+    padding: 0; /* Remove default button padding */
+}
+
+.login-instead button:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

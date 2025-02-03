@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useTable, useExpanded, useFilters, useSortBy } from 'react-table';
-import '../css/table.css';
-import { handleGetRowItem } from '../../service/get/getObjects';
-import { useAppContext } from '../../AppContext';
+import '@/css/table.css';
+import { handleGetRowItem } from '@get/getObjects';
+import { useAppContext } from '@/AppContext';
 
 const DefaultColumnFilter = ({
     column: { filterValue, preFilteredRows, setFilter },
@@ -22,7 +22,7 @@ const DefaultColumnFilter = ({
 };
 
 const BaseTable = ({ data, columns, rowType }) => {
-    const { setViewObject, filtersOn, setTableData } = useAppContext();
+    const { setViewObject, filtersOn, setPage, setViewType} = useAppContext();
 
 
     const defaultColumn = useMemo(
@@ -42,7 +42,7 @@ const BaseTable = ({ data, columns, rowType }) => {
         {
             columns,
             data,
-            defaultColumn, // Be sure to pass the defaultColumn option
+            defaultColumn, 
         },
         useFilters, 
         useSortBy,
@@ -51,12 +51,16 @@ const BaseTable = ({ data, columns, rowType }) => {
 
     const handleRowClick = async (event, row) => {
         if (event.target.tagName.toLowerCase() === 'button') {
-            return;
+            return; // Do nothing if a button was clicked
         }
         try {
             const viewObject = await handleGetRowItem(row.original, rowType);
             console.log(viewObject);
-            setViewObject(viewObject);
+            if (['courses', 'enrollments'].includes(rowType)) {
+                setViewObject(viewObject);
+                setViewType('courses');
+                setPage('ObjectViewer')
+            }
         } catch (error) {
             console.error(error);
         }
@@ -102,11 +106,16 @@ const BaseTable = ({ data, columns, rowType }) => {
                     prepareRow(row);
                     const { key: rowKey, ...rowProps } = row.getRowProps();
                     return (
-                        <tr key={rowKey || rowIndex} {...rowProps} className="table-body-row" onClick={(e) => handleRowClick(e, row)}>
+                        <tr key={rowKey || rowIndex} {...rowProps} className="table-body-row">
                             {row.cells.map((cell, cellIndex) => {
                                 const { key: cellKey, ...cellProps } = cell.getCellProps();
                                 return (
-                                    <td key={cellKey || cellIndex} {...cellProps} className="table-body-cell">
+                                    <td 
+                                        key={cellKey || cellIndex} 
+                                        {...cellProps} 
+                                        className="table-body-cell"
+                                        onClick={cellIndex !== row.cells.length - 1 ? (event) => handleRowClick(event, row) : undefined}
+                                    >
                                         {cell.render('Cell')}
                                     </td>
                                 );

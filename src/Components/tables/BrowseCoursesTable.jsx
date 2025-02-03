@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { BaseTable } from './BaseTable';
-import performCourseManagerAction from '../../service/courseManagerActions';
+import { BaseTable } from '@tables/BaseTable';
+import performCourseManagerAction from '@actions/courseManagerActions';
 
 
 const BrowseCourses = ({ data}) => {
@@ -26,7 +26,7 @@ const BrowseCourses = ({ data}) => {
                     <button onClick={() => performCourseManagerAction({
                         action: 'enroll_student',
                         course_id: row.original.id 
-                    })}>
+                    })} className='enroll-button'>
                         Enroll
                     </button>
                 ),
@@ -35,7 +35,6 @@ const BrowseCourses = ({ data}) => {
         []
     );
 
-    // Do something diffent here i.e. a sign up button to enroll in a course
     return <BaseTable data={data} columns={columns} rowType='courses'/>
 };
 

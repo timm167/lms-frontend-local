@@ -7,13 +7,18 @@ const AppContext = createContext();
 export function AppProvider({ children }) {
     const [filtersOn, setFiltersOn] = useState(false);
     const [viewObject, setViewObject] = useState(null);
+    const [viewType, setViewType] = useState(null);
     const [tableData, setTableData] = useState([]);
-    const [tableView, setTableView] = useState('normal');
-
+    const [tableView, setTableView] = useState('browse');
+    const [page, setPage] = useState('login');
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [authStatus, setAuthStatus] = useState('unauthorized');
 
 
   return (
-    <AppContext.Provider value={{ filtersOn, setFiltersOn, viewObject, setViewObject, tableData, setTableData, tableView, setTableView }}>
+    <AppContext.Provider value={{ filtersOn, setFiltersOn, viewObject, setViewObject, tableData, setTableData, tableView, setTableView,
+    page, setPage, loggedIn, setLoggedIn, authStatus, setAuthStatus, viewType, setViewType
+     }}>
       {children}
     </AppContext.Provider>
   );

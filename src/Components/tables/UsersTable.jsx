@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { BaseTable } from './BaseTable';
-import deleteUser from '../../service/users/deleteUser'
+import deleteUser from '@actions/deleteUser'
 import { useAppContext } from '../../AppContext';
-import getLists from '../../service/get/getLists';
+import getLists from '@get/getLists';
 
 const UsersTable = ({ data }) => {
     const { setTableData, tableView } = useAppContext();

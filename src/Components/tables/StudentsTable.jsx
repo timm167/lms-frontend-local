@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { BaseTable, ExpandableList } from './BaseTable';
-import {listContainsCourseFilter} from './filters/listContainsFilters';
+import { BaseTable, ExpandableList } from '@tables/BaseTable';
+import { listContainsCourseFilter } from '@tables/filters/nestedFilter';
 
 const StudentsTable = ({ data}) => {
     const columns = useMemo(

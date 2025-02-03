@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { DefaultColumnFilter, BaseTable } from './BaseTable';
-import { courseFilter, studentFilter, completionStatusFilter } from './filters/enrollmentsFilters';
-import performCourseManagerAction from '../../service/courseManagerActions';
-import { useAppContext } from '../../AppContext';
-import getLists from '../../service/get/getLists';
+import { DefaultColumnFilter, BaseTable } from '@tables/BaseTable';
+import { courseFilter, studentFilter, completionStatusFilter } from '@tables/filters/enrollmentsFilters';
+import performCourseManagerAction from '@/service/actions/courseManagerActions';
+import { useAppContext } from '@/AppContext';
+import getLists from '@/service/get/getLists';
 
 const EnrollmentsTable = ({ data }) => {
     const {setTableData, tableView } = useAppContext();
@@ -53,7 +53,7 @@ const EnrollmentsTable = ({ data }) => {
                 Filter: DefaultColumnFilter,
                 Cell: ({ row }) => {
                     return (
-                        <button onClick={() => handleUnenrollClick(row)}>
+                        <button onClick={() => handleUnenrollClick(row)} className='unenroll-button'>
                             Unenroll
                         </button>
                     );

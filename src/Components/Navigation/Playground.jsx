@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
-import StudentsTable from "./tables/Students";
-import CoursesTable from "./tables/Courses";
-import UsersTable from "./tables/Users";
-import TeachersTable from "./tables/Teachers";
-import EnrollmentsTable from "./tables/Enrollments";
-import AdminsTable from "./tables/Admins";
-import getLists from '../service/get/getLists';
-import handleLogin from '../service/accounts/handleLogin';
-import handleLogout from '../service/accounts/handleLogout';
-import { handleClear, handleGenerate } from '../service/new_data_set';
-import { useAppContext } from '../AppContext';
-import './css/playground.css';
+import React, { useState } from 'react';
+import StudentsTable from "@tables/StudentsTable";
+import CoursesTable from "@tables/CoursesTable";
+import UsersTable from "@tables/UsersTable";
+import TeachersTable from "@tables/TeachersTable";
+import EnrollmentsTable from "@tables/EnrollmentsTable";
+import AdminsTable from "@tables/AdminsTable";
+import getLists from '@get/getLists';
+import handleLogin from '@accounts/handleLogin';
+import handleLogout from '@accounts/handleLogout';
+import { handleClear, handleGenerate } from '@service/new_data_set';
+import { useAppContext } from '@/AppContext';
+import '@css/playground.css';
 
 
 const tableComponents = {
@@ -33,11 +33,16 @@ const Playground = () => {
     // ----------------------------------------
 
     const [currentTable, setCurrentTable] = useState(null);
-    const [userData, setUserData] = useState({ username: '', email: '' });
-    const [courseData, setCourseData] = useState({ courseName: '', courseDescription: '' });
-    const [authStatus, setAuthStatus] = useState('select an option');
     const [permissionDenied, setPermissionDenied] = useState(false);
-    const { filtersOn, setFiltersOn, viewObject, setViewObject, tableData, setTableData, tableView, setTableView } = useAppContext();
+    const { filtersOn, 
+        setFiltersOn, 
+        tableData, 
+        setTableData, 
+        tableView, 
+        setTableView, 
+        setPage, 
+        authStatus,
+        setAuthStatus } = useAppContext();
 
     const toggleView = () => {
         const newView = tableView === 'normal' ? 'browse' : 'normal';
@@ -73,28 +78,6 @@ const Playground = () => {
         
     };
 
-    const handleUserInputChange = (e) => {
-        const { name, value } = e.target;
-        setUserData({ ...userData, [name]: value });
-    };
-
-    const handleCourseInputChange = (e) => {
-        const { name, value } = e.target;
-        setCourseData({ ...courseData, [name]: value });
-    };
-
-    const handleUserSubmit = (e) => {
-        e.preventDefault();
-        console.log("Adding user: ", userData);
-        // Handle user creation logic (like API call)
-    };
-
-    const handleCourseSubmit = (e) => {
-        e.preventDefault();
-        console.log("Adding course: ", courseData);
-        // Handle course creation logic (like API call)
-    };
-
     const handleAuthAction = (action) => {
         resetTables();
         if (action === 'unauthorized') {
@@ -102,6 +85,7 @@ const Playground = () => {
             setAuthStatus(action);
             return;
         }
+        setAuthStatus(action);
         const email = `${action}@${action}.com`;
         try {
             handleLogin(action, action, action, email, action, action);
@@ -128,8 +112,7 @@ const Playground = () => {
     // ----------------------------------------
 
     return (
-        // MAKE MY COURSE MANAGER ACTIONS WORK WITH THE DATABASE AND DISPLAY IN THE TABLES
-        // Add user, add course
+
         <div className="playground">
             <h2 className={permissionDenied ? 'red' : 'green'}>{permissionDenied ? 'Permission Denied' : 'Everything is okay!'}</h2>
             <div className="row">
@@ -168,50 +151,17 @@ const Playground = () => {
                     </button>
                     <div className={TableComponent ? 'table-display' : ''}>
 
-                        {TableComponent && <TableComponent data={tableData} tableView={tableView} />}
+                        {TableComponent && <TableComponent data={tableData}/>}
                     </div>
                 </div>
             </div>
             
             <div className='actions section'>
                 <h2>Actions</h2>
-                <div className="forms">
-                    <form className="user-form" onSubmit={handleUserSubmit}>
-                        <h4>Add User</h4>
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="Username"
-                            value={userData.username}
-                            onChange={handleUserInputChange}
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={userData.email}
-                            onChange={handleUserInputChange}
-                        />
-                        <button type="submit">Add User</button>
-                    </form>
+                <div className="row">
+                    <button type="submit" className='go-to-form action-button' onClick={() => setPage('AddUser')}>Add User</button>
 
-                    <form className="course-form" onSubmit={handleCourseSubmit}>
-                        <h4>Add Course</h4>
-                        <input
-                            type="text"
-                            name="courseName"
-                            placeholder="Course Name"
-                            value={courseData.courseName}
-                            onChange={handleCourseInputChange}
-                        />
-                        <textarea
-                            name="courseDescription"
-                            placeholder="Course Description"
-                            value={courseData.courseDescription}
-                            onChange={handleCourseInputChange}
-                        />
-                        <button type="submit">Add Course</button>
-                    </form>
+                    <button type="submit" className='go-to-form action-button' onClick={() => setPage('CreateCourse')}>Add Course</button>
                 </div>
             </div>
         </div>

@@ -25,7 +25,8 @@ const handleLogin = async (username, password) => {
       return {
         success: true,
         message: 'Login successful',
-        token: data.token
+        token: data.token,
+        userType: data.user_type
       };
     } else {
       console.error('Login failed:', data.error || 'Unknown error');

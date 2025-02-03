@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
-import BrowseCourses from './BrowseCourses';
-import {ExpandableList, BaseTable, DefaultColumnFilter} from './BaseTable';
-import {listContainsNameFilter, listContainsLessonFilter, listContainsAssignmentFilter }from './filters/listContainsFilters';
+import BrowseCourses from './BrowseCoursesTable';
+import { ExpandableList, BaseTable, DefaultColumnFilter } from './BaseTable';
+import { listContainsNameFilter, listContainsLessonFilter, listContainsAssignmentFilter } from './filters/nestedFilter';
 import teacherInCourseFilter from './filters/teacherInCourseFilter';
-import performCourseManagerAction from '../../service/courseManagerActions';
-import { useAppContext } from '../../AppContext';
-import getLists from '../../service/get/getLists';
+import performCourseManagerAction from '@actions/courseManagerActions';
+import { useAppContext } from '@/AppContext';
+import getLists from '@get/getLists';
 
 const CoursesTable = ({ data}) => {
     const { setTableData, tableView } = useAppContext();
@@ -76,7 +76,7 @@ const CoursesTable = ({ data}) => {
                 )
             }
         ],
-        []
+        [handleDelete, tableView]
     );
 
     return <BaseTable data={data} columns={columns} rowType='courses'/>

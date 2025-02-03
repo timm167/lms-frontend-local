@@ -24,6 +24,7 @@ const performCourseManagerAction = async({
         console.error(`Invalid action: ${action}`);
         return;
     }
+
     const token = localStorage.getItem('token');
     const response = await fetch(`http://localhost:8000/course-manager/`, {
         method: 'POST',
@@ -48,6 +49,7 @@ const performCourseManagerAction = async({
     }
 
     const data = await response.json();
+    console.log("Successfully performed action: ", action);
     return data;
 }
 

@@ -34,7 +34,8 @@
 }
 
 .table-body-row:hover {
-    background-color: #f1f1f1;
+    background-color: #009e9380;
+    cursor: pointer;
 }
 
 /* Expandable List Styles */
@@ -72,8 +73,9 @@
     outline: none; /* Remove the default focus outline */
     border-color: transparent; /* Remove the border color on hover */
     color: rgb(0, 0, 0);
-    background-color: #e0e0e0;
+    background-color: #e0e0e073;
     transition: color 0.3s ease;
+    border-radius: 7px;
 }
 
 .expandable-list-items {
@@ -109,3 +111,27 @@
     border-color: antiquewhite;
     color:#333;
   }
+
+  .table-row-accessor:hover {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #009e9380;
+  }
+
+
+    .unenroll-button {
+        background-color: rgb(75, 0, 0)
+    }
+
+    .enroll-button {
+        background-color: rgb(0, 53, 0)
+    }
+
+    .unenroll-button:hover {
+        background-color: rgb(135, 2, 2)
+    }
+
+    .enroll-button:hover {
+        background-color: rgb(18, 86, 18)
+    }
