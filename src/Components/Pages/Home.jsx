@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography, Card, CardContent, Divider } from '@mui/material';
 import StudentsTable from "@tables/StudentsTable";
 import CoursesTable from "@tables/CoursesTable";
@@ -24,7 +24,14 @@ const tableComponents = {
 
 const Home = () => {
     const [currentTable, setCurrentTable] = useState(null);
-    const { filtersOn, setFiltersOn, tableData, setTableData, tableView, setTableView, setPage, authStatus } = useAppContext();
+    const { filtersOn, setFiltersOn, tableData, setTableData, tableView, setTableView, setPage, authStatus, switchTable, setSwitchTable } = useAppContext();
+
+    useEffect(() => {
+        console.log(switchTable);
+        if (switchTable == 'myCourses' && authStatus == 'student')
+            {handleTableSelection('enrollments')}
+        setSwitchTable(null);
+    }, [switchTable]);
 
     const handleTableSelection = async (table, declaredView='normal') => {
         table = table.toLowerCase();

@@ -9,27 +9,33 @@ import {
 } from '@mui/material';
 import { useAppContext } from '../../../AppContext';
 import { Card } from '@shared-theme/customDesign';
-import getLists from '@get/getLists';
 import performCourseManagerAction from '@actions/courseManagerActions';
 import { handleGetRowItem } from '@get/getObjects';
 
 
 
 function AssignmentsTab() {
-    const { viewObject, authStatus, setViewObject } = useAppContext();
+    const { viewObject, authStatus, setViewObject, setPage, setCourseAddedTo, setViewType } = useAppContext();
 
-
-    const handleDeleteAssignment = (assignmentId) => {
-        // Implement delete assignment logic here
-        console.log(`Delete assignment with ID: ${assignmentId}`);
+    const handleDeleteAssignment = async (assignmentId) => {
+        await performCourseManagerAction({ action: 'delete_assignment', item_id: assignmentId, course_id: viewObject.id });
+        const newViewObject = await handleGetRowItem(viewObject, 'courses');
+        setViewObject(newViewObject);
     };
 
+
     const handleSetAssignment = () => {
-        // Implement set assignment logic here
-        console.log('Set assignment');
+        setCourseAddedTo(viewObject.id);
+        setPage('CreateAssignment');
     }
 
-    
+        
+    const handleViewAssignment = async (assignment) => {
+        const newViewObject = await handleGetRowItem(assignment, 'assignments');
+        await setViewObject(newViewObject);
+        await setViewType('assignments');
+        setPage('ObjectViewer')
+    }
 
   return (
     <Card variant="outlined">
@@ -40,7 +46,9 @@ function AssignmentsTab() {
         <List>
             {viewObject.assignments.map((assignment) => (
                 <ListItem key={assignment.id}>
-                    <ListItemText primary={assignment.title} />
+                    <ListItemText primary={assignment.title} sx={{ ":hover": { cursor: 'pointer', textDecoration: 'underline', color: 'blue' }  }} 
+                    onClick={() => handleViewAssignment(assignment)}
+                    />
                     {authStatus !== 'student' && (
                         <Button
                             variant="contained"

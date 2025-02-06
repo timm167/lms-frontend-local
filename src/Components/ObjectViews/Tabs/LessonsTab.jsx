@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import {
     Typography,
     CardContent,
@@ -6,30 +6,32 @@ import {
     ListItem,
     ListItemText,
     Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
 } from '@mui/material';
 import { useAppContext } from '../../../AppContext';
 import { Card } from '@shared-theme/customDesign';
-import getLists from '@get/getLists';
+import {handleGetRowItem} from '@get/getObjects';
 import performCourseManagerAction from '@actions/courseManagerActions';
-import { handleGetRowItem } from '@get/getObjects';
 
 
 function LessonsTab() {
-    const { viewObject, authStatus, setViewObject } = useAppContext();
+    const { viewObject, authStatus, setViewObject, setPage, setCourseAddedTo, setViewType } = useAppContext();
 
-    const handleDeleteLesson = (lessonId) => {
-        // Implement delete lesson logic here
-        console.log(`Delete lesson with ID: ${lessonId}`);
+    const handleDeleteLesson = async (lessonId) => {
+        await performCourseManagerAction({ action: 'delete_lesson', item_id: lessonId, course_id: viewObject.id });
+        const newViewObject = await handleGetRowItem(viewObject, 'courses');
+        setViewObject(newViewObject);
     };
 
     const handleAddLesson = () => {
-        // Implement add lesson logic here
-        console.log('Add lesson');
+        setCourseAddedTo(viewObject.id);
+        setPage('CreateLesson');
+    }
+
+    const handleViewLesson = async (lesson) => {
+        const newViewObject = await handleGetRowItem(lesson, 'lessons');
+        await setViewObject(newViewObject);
+        await setViewType('lessons');
+        setPage('ObjectViewer')
     }
 
   return (
@@ -41,7 +43,9 @@ function LessonsTab() {
             <List>
                 {viewObject.lessons.map((lesson) => (
                     <ListItem key={lesson.id}>
-                        <ListItemText primary={lesson.title} />
+                        <ListItemText primary={lesson.title} sx={{ ":hover": { cursor: 'pointer', textDecoration: 'underline', color: 'blue' }  }} 
+                        onClick={() => handleViewLesson(lesson)}
+                        />                        
                         {authStatus !== 'student' && (
                             <Button
                                 variant="contained"
@@ -55,7 +59,7 @@ function LessonsTab() {
                 ))}
             </List>
             {authStatus !== 'student' && (
-                <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+                <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={() => handleAddLesson()}>
                     Create Lesson
                 </Button>
             )}

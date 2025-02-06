@@ -1,9 +1,9 @@
 const availableActions =  [
     'create_course',
     'delete_course',
-    'create_lesson',
+    'add_lesson',
     'delete_lesson',
-    'create_assignment',
+    'add_assignment',
     'delete_assignment',
     'enroll_student',
     'unenroll_student',
@@ -49,6 +49,7 @@ const performCourseManagerAction = async({
     }
 
     const data = await response.json();
+    console.log(data);
     console.log("Successfully performed action: ", action);
     return data;
 }

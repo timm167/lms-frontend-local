@@ -12,17 +12,20 @@ import AssignmentsTab from './Tabs/AssignmentsTab';
 import CourseInfoTab from './Tabs/CourseInfoTab';
 import LessonsTab from './Tabs/LessonsTab';
 
+
 function CourseView() {
     const [activeTab, setActiveTab] = useState('info');
-    const { viewObject } = useAppContext();
+    const { viewObject} = useAppContext();
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
     };
 
+
     return (
         <CustomContainer>
-            <Box sx={{ width: '100%', fontSize: '1.5rem' }}>
+            <Box sx={{ width: '100%', fontSize: '1.5rem', position: 'relative', paddingTop: '50px' }}>
+
                 {/* Course Header */}
                 <Typography variant="h4" sx={{ mb: 2, color: 'black' }}>
                     {viewObject.title}

@@ -48,7 +48,7 @@ const EnrollmentsTable = ({ data }) => {
                 Cell: ({ value }) => (value ? 'Completed' : 'In Progress'),
             },
             {
-                Header: 'Unenroll student',
+                Header: 'Unenroll',
                 accessor: 'course_id',
                 Filter: DefaultColumnFilter,
                 Cell: ({ row }) => {

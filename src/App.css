@@ -41,13 +41,3 @@
   color: #888;
 }
 
-#playground-button{
-  background-color: #a3e6ff;
-  position: absolute  ;
-  top: 20px;
-  left: 20px;
-  padding: 10px;
-  color: #1b1f24;
-  cursor: pointer;
-  font-size: 12px;
-}

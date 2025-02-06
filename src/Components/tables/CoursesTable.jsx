@@ -9,11 +9,6 @@ import getLists from '@get/getLists';
 
 const CoursesTable = ({ data}) => {
     const { setTableData, tableView } = useAppContext();
-    if (tableView === 'browse') {
-        return (
-            <BrowseCourses data={data} />
-        );
-    }
 
     const handleDelete = async (course_id) => {
         await performCourseManagerAction({action: 'delete_course', course_id: course_id})
@@ -78,6 +73,11 @@ const CoursesTable = ({ data}) => {
         ],
         [handleDelete, tableView]
     );
+    if (tableView === 'browse') {
+        return (
+            <BrowseCourses data={data} />
+        );
+    }
 
     return <BaseTable data={data} columns={columns} rowType='courses'/>
 };

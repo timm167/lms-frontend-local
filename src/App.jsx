@@ -9,7 +9,9 @@ import  getUserType  from '@get/getUserType'
 import ObjectViewer from './Components/ObjectViews/ObjectViewer'
 import Header from './Components/Navigation/Header'
 import Home from './Components/Pages/Home'
-import Admin from './Components/Pages/Admin'
+import Footer from './Components/Navigation/Footer'
+import CreateLesson from '@forms/CreateLessonForm';
+import CreateAssignment from '@forms/CreateAssignmentForm';
 
 function App() {
   const {page, setPage, setLoggedIn, setAuthStatus} = useAppContext()
@@ -39,12 +41,15 @@ function App() {
   }, []);
 
 
-        // Tidy code base front and back end
+    // Full documentation front and back
+    // Set up tests
+    // Set up debugger
+
 
   return (
     <>
       <Header/>
-      <div style={{ paddingTop: '85px' }}> 
+      <div style={{ paddingTop: '85px', zIndex: 2}}> 
         {(page === 'Playground') && <Playground />}
         {(page === 'Login') && <SignIn />}
         {(page === 'Signup') && <UserCreateForm formTitle='Sign Up' />}
@@ -52,8 +57,12 @@ function App() {
         {(page === 'Home') && <Home />}
         {(page === 'CreateCourse') && <CourseCreateForm />}
         {(page === 'ObjectViewer') && <ObjectViewer />}
-        {(page === 'Admin') && <Admin />}
+        {(page === 'CreateLesson') && <CreateLesson />}
+        {(page === 'CreateAssignment') && <CreateAssignment/>}
       </div>
+      <Footer/>
+      
+
     </>
   )
 }

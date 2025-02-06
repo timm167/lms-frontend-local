@@ -13,11 +13,17 @@ export function AppProvider({ children }) {
     const [page, setPage] = useState('login');
     const [loggedIn, setLoggedIn] = useState(false);
     const [authStatus, setAuthStatus] = useState('unauthorized');
+    const [switchTable, setSwitchTable] = useState(null);
+    const [courseAddedTo, setCourseAddedTo] = useState(null);
 
 
   return (
-    <AppContext.Provider value={{ filtersOn, setFiltersOn, viewObject, setViewObject, tableData, setTableData, tableView, setTableView,
-    page, setPage, loggedIn, setLoggedIn, authStatus, setAuthStatus, viewType, setViewType
+    <AppContext.Provider 
+    value={{ filtersOn, setFiltersOn, viewObject, 
+      setViewObject, tableData, setTableData, tableView, setTableView,
+    page, setPage, loggedIn, setLoggedIn, authStatus, setAuthStatus, 
+    viewType, setViewType, switchTable, setSwitchTable, courseAddedTo,
+    setCourseAddedTo
      }}>
       {children}
     </AppContext.Provider>

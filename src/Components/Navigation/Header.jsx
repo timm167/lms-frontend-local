@@ -23,7 +23,7 @@ function Header() {
                 <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'space-around', mr: 2 }}>
                     <Button color="inherit" onClick={() => handleNavigation('Home')}>Home ({authStatus})</Button>
                     <Button color="inherit" onClick={() => handleNavigation('Playground')}>Toggle Playground</Button>
-                    <Button color="inherit" onClick={() => handleNavigation('Login')}>Sign Out</Button>
+                    <Button color="inherit" onClick={() => handleNavigation('Login')}>{authStatus == 'unauthorized' ? 'Login' : 'Sign Out'}</Button>
                 </Box>
             </Toolbar>
         </AppBar>
