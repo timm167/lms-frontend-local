@@ -4,22 +4,42 @@ import {
     Typography,
     Tabs,
     Tab,
+    Button,
 } from '@mui/material';
 import { useAppContext } from '../../AppContext';
 import { CustomContainer } from '@shared-theme/customDesign';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function AssignmentView() {
     const [activeTab, setActiveTab] = useState('info');
-    const { viewObject } = useAppContext();
+    const { viewObject, setViewObject, setViewType, lastViewObject } = useAppContext();
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
     };
 
+    const handleBack = () => {
+        setViewObject(lastViewObject);
+        setViewType('courses')
+    }
+
     return (
         <CustomContainer>
             <Box sx={{ width: '100%', fontSize: '1.5rem', position: 'relative', paddingTop: '50px' }}>
-                {/* Assignment Header */}
+                <Button
+                    variant="text"
+                    startIcon={<ArrowBackIcon />}
+                    sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        zIndex: 1,
+                        fontSize: '0.7rem',
+                    }}
+                    onClick={() => handleBack()}
+                >
+                    COURSE
+                </Button>
                 <Typography variant="h4" sx={{ mb: 2, color: 'black' }}>
                     {viewObject.title}
                 </Typography>

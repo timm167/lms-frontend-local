@@ -49,7 +49,6 @@ const performCourseManagerAction = async({
     }
 
     const data = await response.json();
-    console.log(data);
     console.log("Successfully performed action: ", action);
     return data;
 }

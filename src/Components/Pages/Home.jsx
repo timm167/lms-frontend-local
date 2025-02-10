@@ -27,7 +27,6 @@ const Home = () => {
     const { filtersOn, setFiltersOn, tableData, setTableData, tableView, setTableView, setPage, authStatus, switchTable, setSwitchTable } = useAppContext();
 
     useEffect(() => {
-        console.log(switchTable);
         if (switchTable == 'myCourses' && authStatus == 'student')
             {handleTableSelection('enrollments')}
         setSwitchTable(null);

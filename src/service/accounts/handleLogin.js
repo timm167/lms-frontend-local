@@ -1,5 +1,4 @@
 const handleLogin = async (username, password) => {
-    console.log(username, password);
     const response = await fetch('http://localhost:8000/accounts/login/', {
       method: 'POST',
       headers: {

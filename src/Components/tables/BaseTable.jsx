@@ -55,7 +55,6 @@ const BaseTable = ({ data, columns, rowType }) => {
         }
         try {
             const viewObject = await handleGetRowItem(row.original, rowType);
-            console.log(viewObject);
             if (['courses', 'enrollments'].includes(rowType)) {
                 setViewObject(viewObject);
                 setViewType('courses');

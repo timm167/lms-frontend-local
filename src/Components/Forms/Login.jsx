@@ -58,7 +58,6 @@ export default function SignIn(props) {
     const password = document.getElementById('password');
 
     let isValid = true;
-    console.log(username.value);
 
     if (!username.value || username.value.length < 1) {
         setNameError(true);
@@ -74,7 +73,6 @@ export default function SignIn(props) {
       setPasswordError(false);
       setPasswordErrorMessage('');
     }
-    console.log(isValid);
     return isValid;
   };
 

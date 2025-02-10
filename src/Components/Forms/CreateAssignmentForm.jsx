@@ -24,7 +24,7 @@ export default function CreateAssignment(props) {
     const [maxScoreErrorMessage, setMaxScoreErrorMessage] = React.useState('');
     const [passScoreError, setPassScoreError] = React.useState(false);
     const [passScoreErrorMessage, setPassScoreErrorMessage] = React.useState('');
-    const { setPage, viewObject, courseAddedTo, setViewObject } = useAppContext();
+    const { setPage, viewObject, courseAddedTo, setViewObject, authStatus } = useAppContext();
 
     function validateInputs() {
         let isValid = true;
@@ -98,7 +98,6 @@ export default function CreateAssignment(props) {
             max_score: parseInt(data.get('max_score'), 10),
             pass_score: parseInt(data.get('pass_score'), 10),
         };
-        console.log(assignmentData);    
         const response = await performCourseManagerAction(assignmentData);
         const newViewObject = await handleGetRowItem(viewObject, 'courses');
         setViewObject(newViewObject);
@@ -106,6 +105,7 @@ export default function CreateAssignment(props) {
 
         return response;
     };
+
 
     return (
         <CustomContainer
@@ -126,9 +126,9 @@ export default function CreateAssignment(props) {
                         zIndex: 1,
                         fontSize: '0.7rem',
                     }}
-                    onClick={() => setPage('Home')}
+                    onClick={() => setPage('ObjectViewer')}
                 >
-                    Assignments
+                    Back To Course
                 </Button>
                 <Typography
                     component="h1"

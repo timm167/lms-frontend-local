@@ -1,5 +1,4 @@
 const handleGetRowItem = async (row, rowType) => {
-    console.log(row, rowType);
     const token = localStorage.getItem('token');
     let id = 0;
     

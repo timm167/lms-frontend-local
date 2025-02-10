@@ -15,6 +15,7 @@ export function AppProvider({ children }) {
     const [authStatus, setAuthStatus] = useState('unauthorized');
     const [switchTable, setSwitchTable] = useState(null);
     const [courseAddedTo, setCourseAddedTo] = useState(null);
+    const [lastViewObject, setLastViewObject] = useState(null);
 
 
   return (
@@ -23,7 +24,7 @@ export function AppProvider({ children }) {
       setViewObject, tableData, setTableData, tableView, setTableView,
     page, setPage, loggedIn, setLoggedIn, authStatus, setAuthStatus, 
     viewType, setViewType, switchTable, setSwitchTable, courseAddedTo,
-    setCourseAddedTo
+    setCourseAddedTo, lastViewObject, setLastViewObject
      }}>
       {children}
     </AppContext.Provider>

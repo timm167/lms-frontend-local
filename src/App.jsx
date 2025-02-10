@@ -5,7 +5,7 @@ import UserCreateForm from '@forms/UserCreateForm'
 import Playground from '@components/Navigation/Playground'
 import { useAppContext } from './AppContext'
 import CourseCreateForm from '@forms/CourseCreateForm'
-import  getUserType  from '@get/getUserType'
+import getUserType  from '@get/getUserType'
 import ObjectViewer from './Components/ObjectViews/ObjectViewer'
 import Header from './Components/Navigation/Header'
 import Home from './Components/Pages/Home'
@@ -19,13 +19,11 @@ function App() {
   useEffect(() => {
     const checkUser = async () => {
       const token = localStorage.getItem('token');
-      console.log("Token: ", token);
       if (token) {
         setLoggedIn(true);
         setPage('Home');
         try {
           const userType = await getUserType(token);
-          console.log("User type: ", userType);
           setAuthStatus(userType);
         } catch (error) {
           console.error('Error fetching user type:', error);
@@ -41,9 +39,9 @@ function App() {
   }, []);
 
 
-    // Full documentation front and back
-    // Set up tests
-    // Set up debugger
+    // Set up tests (Frontend)
+    // Frontend documentation
+    // Set up some backend tests
 
 
   return (

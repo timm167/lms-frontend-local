@@ -97,7 +97,8 @@ function StudentsTab() {
                                     )
                                     .map((student) => (
                                         <ListItem
-                                            button
+                                            button='true'
+                                            sx={{ cursor: 'pointer' }}
                                             key={student.user_id}
                                             onClick={() => handleAddStudent(student.user_id)}
                                         >

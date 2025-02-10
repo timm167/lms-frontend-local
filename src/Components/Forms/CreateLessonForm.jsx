@@ -82,7 +82,6 @@ export default function CreateLesson(props) {
             content: data.get('content'),
             video_url: data.get('video_url'),
         };
-        console.log(lessonData);
         const response = await performCourseManagerAction(lessonData);
         const newViewObject = await handleGetRowItem(viewObject, 'courses');
         setViewObject(newViewObject);
@@ -110,9 +109,9 @@ export default function CreateLesson(props) {
                         zIndex: 1,
                         fontSize: '0.7rem',
                     }}
-                    onClick={() => setPage('Home')}
+                    onClick={() => setPage('ObjectViewer')}
                 >
-                    Lessons
+                    Back To Course
                 </Button>
                 <Typography
                     component="h1"

@@ -22,5 +22,10 @@ export default defineConfig({
       '@css': path.resolve(__dirname, './src/css'), // Alias for css
       '@shared-theme': path.resolve(__dirname, './src/shared-theme'), // Alias for shared-theme
     },
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './setupTests.js',
   },
 })

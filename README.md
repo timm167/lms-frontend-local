@@ -1,8 +1,38 @@
-# React + Vite
+# Learning Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Steps To Deploy
 
-Currently, two official plugins are available:
+## Backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Clone the Repository**
+   ```sh
+   git clone https://github.com/timm167/lms-backend
+   cd lms-backend
+   ```
+
+2. **Create a Virtual Environment** (optional but recommended)
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On macOS/Linux
+   venv\Scripts\activate     # On Windows
+   ```
+
+3. **Install Dependencies**
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+4. **Run Migrations**
+   ```sh
+   python manage.py migrate
+   ```
+
+6. **Start the Development Server**
+   ```sh
+   python manage.py runserver
+   ```
+
+## Frontend
+
+Maybe run on GH-Pages? 
+

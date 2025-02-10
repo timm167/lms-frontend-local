@@ -4,28 +4,50 @@ import {
     Typography,
     Tabs,
     Tab,
+    Button,
 } from '@mui/material';
 import { useAppContext } from '../../AppContext';
 import { CustomContainer } from '@shared-theme/customDesign';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function LessonView() {
     const [activeTab, setActiveTab] = useState('info');
-    const { viewObject } = useAppContext();
+    const { viewObject, lastViewObject, setViewObject, setViewType} = useAppContext();
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
     };
 
+    const handleBack = () => {
+        setViewObject(lastViewObject);
+        setViewType('courses')
+    }
+
+
     return (
         <CustomContainer>
             <Box sx={{ width: '100%', fontSize: '1.5rem', position: 'relative', paddingTop: '50px' }}>
-                {/* Lesson Header */}
+                <Button
+                    variant="text"
+                    startIcon={<ArrowBackIcon />}
+                    sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        zIndex: 1,
+                        fontSize: '0.7rem',
+                    }}
+                    onClick={() => handleBack()}
+                >
+                    COURSE
+                </Button>
                 <Typography variant="h4" sx={{ mb: 2, color: 'black' }} onClick={() => console.log(viewObject.video_url)}>
                     {viewObject.title}
                 </Typography>
                 <Typography variant="subtitle1" sx={{ mb: 4, color: 'black' }}>
                     Lesson Number: {viewObject.lesson_no}
                 </Typography>
+
 
                 {/* Tabs for Navigation */}
                 <Tabs value={activeTab} onChange={handleTabChange} sx={{ mb: 3 }}>

@@ -1,6 +1,4 @@
 const courseFilter = (rows, id, filterValue) => {
-    console.log("courseFilter");
-    console.log(rows);
 
     return rows.filter(row => {
         const course = row.original.course;

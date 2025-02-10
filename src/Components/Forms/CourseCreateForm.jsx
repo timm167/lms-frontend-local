@@ -31,7 +31,6 @@ export default function CreateCourse(props) {
             if (authStatus == 'admin') {
                 teachers = await getLists('teachers');
             }
-            console.log("Teachers: ", teachers);
             setTeachers(teachers);
         }
         getTeachers();
@@ -44,10 +43,8 @@ export default function CreateCourse(props) {
 
     function validateInputs() {
         let isValid = true;
-        console.log("Auth Status: ", authStatus);
 
         if (!teacher && authStatus == 'admin') {
-            console.log("Teacher: ", teacher);
             setTeacherError(true);
             setTeacherErrorMessage('Please select a teacher');
             isValid = false;

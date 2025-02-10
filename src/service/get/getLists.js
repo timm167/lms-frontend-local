@@ -1,5 +1,4 @@
 const getLists = async (type, action='normal') => {
-    console.log(action)
     if (action == 'browse' && type == 'courses') {
         type = type + '/browse'
     }

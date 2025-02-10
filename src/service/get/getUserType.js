@@ -14,6 +14,6 @@ export default function getUserType(token) {
         return response.json();
     })
     .then(data => {
-        return data.user_type; // Return the actual user type
+        return data.user_type; 
     });
 }

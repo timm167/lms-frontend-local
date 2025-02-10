@@ -10,7 +10,6 @@ export default function ObjectViewer() {
         return <CourseView />;
     }
     if (viewType === 'lessons') {
-        console.log('lessons');
         return <LessonView />;
     }
     if (viewType === 'assignments') {

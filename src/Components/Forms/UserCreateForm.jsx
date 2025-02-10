@@ -64,11 +64,11 @@ return (
             fontSize: '0.7rem',
           }}
           onClick={() => {
-            // Handle navigation to the login page
-            setPage('Login');
+            const newPage = authStatus === 'admin' ? 'Home' : 'Login';
+            setPage(newPage);
           }}
         >
-          Login
+          {authStatus === 'admin' ? 'Home' : 'Login'}
         </Button>
         <Typography
           component="h1"
@@ -89,8 +89,12 @@ return (
               Role
             </MenuItem>
             <MenuItem value="student">Student</MenuItem>
-            <MenuItem value="teacher">Teacher</MenuItem>
-            <MenuItem value="admin">Admin</MenuItem>
+            {authStatus == 'admin' && (
+              <>
+                <MenuItem value="teacher">Teacher</MenuItem>
+                <MenuItem value="admin">Admin</MenuItem>
+              </>
+            )}
           </Select>
         </FormControl>
         <Divider sx={{ marginBottom: '1rem' }} /> {/* Adjust margin bottom */}
