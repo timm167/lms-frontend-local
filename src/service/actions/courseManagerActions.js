@@ -11,6 +11,8 @@ const availableActions =  [
     'remove_teacher'
 ];
 
+import base_url from '../base_url'
+
 const performCourseManagerAction = async({
     action,
     course_id = null,
@@ -26,7 +28,7 @@ const performCourseManagerAction = async({
     }
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`http://localhost:8000/course-manager/`, {
+    const response = await fetch(`${base_url}course-manager/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

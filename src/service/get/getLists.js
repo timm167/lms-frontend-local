@@ -1,10 +1,12 @@
+import base_url from '../base_url'
+
 const getLists = async (type, action='normal') => {
     if (action == 'browse' && type == 'courses') {
         type = type + '/browse'
     }
     const token = localStorage.getItem('token');
 
-    const response = await fetch(`http://localhost:8000/${type}/`, {
+    const response = await fetch(`${base_url}${type}/`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

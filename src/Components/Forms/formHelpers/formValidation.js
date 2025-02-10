@@ -31,7 +31,6 @@ const doValidateInputs = (setEmailError, setEmailErrorMessage, setPasswordError,
         setUsernameError(false);
         setUsernameErrorMessage('');
     }
-
     return isValid;
 };
 

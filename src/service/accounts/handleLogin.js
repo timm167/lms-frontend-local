@@ -1,5 +1,7 @@
+import base_url from '../base_url'
+
 const handleLogin = async (username, password) => {
-    const response = await fetch('http://localhost:8000/accounts/login/', {
+    const response = await fetch(`${base_url}accounts/login/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

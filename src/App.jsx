@@ -14,7 +14,7 @@ import CreateLesson from '@forms/CreateLessonForm';
 import CreateAssignment from '@forms/CreateAssignmentForm';
 
 function App() {
-  const {page, setPage, setLoggedIn, setAuthStatus} = useAppContext()
+  const {page, setPage, setLoggedIn, setAuthStatus, setBaseUrl} = useAppContext()
 
   useEffect(() => {
     const checkUser = async () => {
@@ -34,15 +34,11 @@ function App() {
         setPage('Login');
       }
     };
+    
+
 
     checkUser();
   }, []);
-
-
-    // Set up tests (Frontend)
-    // Frontend documentation
-    // Set up some backend tests
-
 
   return (
     <>

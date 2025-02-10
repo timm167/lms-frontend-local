@@ -1,7 +1,10 @@
 import handleLogin from "./handleLogin";
+import base_url from '../base_url'
+
 
 const handleSignup = async (authStatus, first_name, last_name, username, email, password, role) => {
-    const response = await fetch('http://localhost:8000/accounts/signup/', {
+  console.log(role)
+    const response = await fetch(`${base_url}accounts/signup/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

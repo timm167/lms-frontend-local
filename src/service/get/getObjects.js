@@ -1,3 +1,5 @@
+import base_url from '../base_url'
+
 const handleGetRowItem = async (row, rowType) => {
     const token = localStorage.getItem('token');
     let id = 0;
@@ -14,7 +16,7 @@ const handleGetRowItem = async (row, rowType) => {
         throw { status: 400, message: "ID not found" };
     }
 
-    const response = await fetch(`http://localhost:8000/${rowType}/${id}/`, {
+    const response = await fetch(`${base_url}${rowType}/${id}/`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

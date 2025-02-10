@@ -1,6 +1,8 @@
+import base_url from '../base_url'
+
 const deleteUser = async ({ user_id }) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`http://localhost:8000/users/delete/`, {
+    const response = await fetch(`${base_url}users/delete/`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

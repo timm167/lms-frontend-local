@@ -48,9 +48,10 @@ export default function SignIn(props) {
       const userType = loginResponse.userType;
       setAuthStatus(userType);
       setPage('Home');
+    } else {
+      setNameError(true);
+      setNameErrorMessage('Invalid username or password.');
     }
-
-
   };
 
   const validateInputs = () => {

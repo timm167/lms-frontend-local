@@ -32,11 +32,13 @@ function validateInputs(){
 
 const handleSubmit = async (event) => {
     event.preventDefault();
+    validateInputs();
     if (usernameError || emailError || passwordError) {
+        console.log('Error in form');
         return;
     }
     const data = new FormData(event.currentTarget);
-    const role = data.get('role');
+    data.append('role', role);
     if( props.formTitle == 'Sign Up' && role != 'student') {
         alert('Ask an admin to create a teacher or admin account');
         return;
@@ -162,16 +164,16 @@ return (
               color={passwordError ? 'error' : 'primary'}
             />
           </FormControl>
-        </Box>
-        <Divider sx={{ marginBottom: '1rem' }} /> {/* Adjust margin bottom */}
-        <Button
+          <Divider sx={{ marginBottom: '1rem' }} /> {/* Adjust margin bottom */}
+          <Button
           type="submit"
           fullWidth
           variant="contained"
-          onClick={validateInputs}
         >
           {props.formTitle}
         </Button>
+        </Box>
+
       </Card>
     </CustomContainer>
   );

@@ -1,5 +1,7 @@
+import base_url from '../base_url'
+
 export default function getUserType(token) {
-    return fetch(`http://localhost:8000/user/type/`, {
+    return fetch(`${base_url}user/type/`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

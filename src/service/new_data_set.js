@@ -1,5 +1,7 @@
+import base_url from './base_url'
+
 const handleClear = () => {
-    fetch("http://localhost:8000/data/refresh/", {
+    fetch(`${base_url}data/refresh/`, {
         method: "DELETE",
       })
         .then(response => response.json())
@@ -8,7 +10,7 @@ const handleClear = () => {
 }
 
 const handleGenerate = () => {
-    fetch("http://localhost:8000/data/refresh/", {
+    fetch(`${base_url}data/refresh/`, {
         method: "POST",
       })
         .then(response => response.json())

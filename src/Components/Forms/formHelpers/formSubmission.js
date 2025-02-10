@@ -8,7 +8,9 @@ const userFormSubmission = async(authStatus, setAuthStatus, data, setPage) => {
     const email = data.get('email');
     const password = data.get('password');
     const role = data.get('role');
+    console.log(full_name, username, email, password, role);
     const signupResponse = await handleSignup(authStatus, first_name, last_name, username, email, password, role);
+    console.log(signupResponse);
     if (signupResponse.success && authStatus !== 'admin') {
         setPage('Home');
         setAuthStatus(role);
