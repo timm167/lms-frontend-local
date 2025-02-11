@@ -2,6 +2,8 @@
 
 ## Quick Start
 
+For more start options, access https://github.com/timm167/lms-backend/blob/main/USAGE.md
+
 ### 1. Ensure localhost 8000 is free
 Otherwise you can manually change the base_url in the frontend at src/service/base_url after cloning.
 
