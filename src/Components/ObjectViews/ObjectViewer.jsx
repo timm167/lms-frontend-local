@@ -14,6 +14,5 @@ export default function ObjectViewer() {
     }
     if (viewType === 'assignments') {
         return <AssignmentView />;
-
     }
 }

@@ -2,14 +2,14 @@ import { expect, test, vi } from 'vitest';
 import '@testing-library/jest-dom'; 
 import { render, screen } from '@testing-library/react';
 import App from '../App';
-import { AppProvider, useAppContext } from '../AppContext'; // Import `useAppContext`
+import { AppProvider, useAppContext } from '../AppContext'; 
 
 // Partially mock the AppContext module
 vi.mock('../AppContext', async () => {
   const actual = await vi.importActual('../AppContext'); 
   return {
     ...actual,
-    useAppContext: vi.fn(), // Mock `useAppContext` to make it a function
+    useAppContext: vi.fn(), 
   };
 });
 
@@ -328,5 +328,5 @@ test('Assignments view', () => {
         </AppProvider>
     );
     
-    expect(screen.getByText(/Midterm Project for/i)).toBeInTheDocument(); // Check that the title is displayed
+    expect(screen.getByText(/Midterm Project for/i)).toBeInTheDocument(); 
 });

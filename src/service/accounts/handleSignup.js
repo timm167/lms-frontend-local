@@ -3,7 +3,6 @@ import base_url from '../base_url'
 
 
 const handleSignup = async (authStatus, first_name, last_name, username, email, password, role) => {
-  console.log(role)
     const response = await fetch(`${base_url}accounts/signup/`, {
       method: 'POST',
       headers: {

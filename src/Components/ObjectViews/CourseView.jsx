@@ -27,7 +27,8 @@ function CourseView() {
 
     return (
         <CustomContainer>
-            <Box sx={{ width: '100%', fontSize: '2rem', position: 'relative', paddingTop: '50px' }}>
+            <Box sx={{ width: '100%', fontSize: '2rem', position: 'relative', paddingTop: '50px'
+            }}>
                 <Button
                     variant="text"
                     startIcon={<ArrowBackIcon />}

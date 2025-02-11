@@ -35,7 +35,7 @@ function LessonsTab() {
     }
 
   return (
-<Card variant="outlined">
+    <Card variant="outlined" sx={{ maxHeight: '500px', overflowY: 'auto' }}>
         <CardContent>
             <Typography variant="h6" sx={{ mb: 2 }}>
                 Lessons

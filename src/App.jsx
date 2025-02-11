@@ -14,7 +14,7 @@ import CreateLesson from '@forms/CreateLessonForm';
 import CreateAssignment from '@forms/CreateAssignmentForm';
 
 function App() {
-  const {page, setPage, setLoggedIn, setAuthStatus, setBaseUrl} = useAppContext()
+  const {page, setPage, setLoggedIn, setAuthStatus} = useAppContext()
 
   useEffect(() => {
     const checkUser = async () => {
@@ -34,9 +34,6 @@ function App() {
         setPage('Login');
       }
     };
-    
-
-
     checkUser();
   }, []);
 
@@ -55,8 +52,6 @@ function App() {
         {(page === 'CreateAssignment') && <CreateAssignment/>}
       </div>
       <Footer/>
-      
-
     </>
   )
 }

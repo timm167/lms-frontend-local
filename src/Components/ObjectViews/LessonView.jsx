@@ -46,9 +46,6 @@ function LessonView() {
                 <Typography variant="h4" sx={{ mb: 2, color: 'black' }} onClick={() => console.log(viewObject.video_url)}>
                     {viewObject.title}
                 </Typography>
-                <Typography variant="subtitle1" sx={{ mb: 4, color: 'black' }}>
-                    Lesson Number: {viewObject.lesson_no}
-                </Typography>
                 
                 <Divider sx={{ mb: 4 }} />
 
