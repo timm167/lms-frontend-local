@@ -1,11 +1,10 @@
 # Learning Management System
 
-## Quick Start (with backend functionality)
-**Note**: For more deployment options and remote access, checkout https://github.com/timm167/lms-backend/blob/main/USAGE.md
+## Quick Start
 
-Ensure localhost 8000 is free, or otherwise manually change the base_url in the frontend at src/service/base_url.
+1. Ensure localhost 8000 is free, or otherwise manually change the base_url in the frontend at src/service/base_url.
 
-1. ## Deploy Backend 
+2. ## Deploy Backend 
 ### Macbook /Linux
 ```
 pip install python3
@@ -28,7 +27,7 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
-2. ## Deploy Frontend 
+3. ## Deploy Frontend 
 
 Seperate terminal
 
@@ -39,7 +38,7 @@ npm install
 npm run dev
 ```
 
-3. ## Access
+4. ## Access
    
 Go to http://localhost:5173/lms-frontend-local/ (or check terminal for other url)
 
