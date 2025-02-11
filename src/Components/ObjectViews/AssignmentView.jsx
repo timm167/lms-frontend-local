@@ -5,9 +5,10 @@ import {
     Tabs,
     Tab,
     Button,
+    Divider,
 } from '@mui/material';
 import { useAppContext } from '../../AppContext';
-import { CustomContainer } from '@shared-theme/customDesign';
+import { CustomContainer, Card } from '@shared-theme/customDesign';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function AssignmentView() {
@@ -46,12 +47,15 @@ function AssignmentView() {
                 <Typography variant="subtitle1" sx={{ mb: 4, color: 'black' }}>
                     Due Date: {new Date(viewObject.due_date).toLocaleString()}
                 </Typography>
-
+                
+                <Divider sx={{ mb: 4 }} />
                 {/* Tabs for Navigation */}
                 <Tabs value={activeTab} onChange={handleTabChange} sx={{ mb: 3 }}>
                     <Tab label="Assignment Info" value="info" sx={{ '&:focus': { outline: 'none' } }} />
                     <Tab label="Scores" value="scores" sx={{ '&:focus': { outline: 'none' } }} />
                 </Tabs>
+
+                <Card variant="outlined" sx={{ position: 'relative', padding: 4, minHeight: '30vh', width: '100%', maxWidth: '800px', marginTop: '2rem' }}> 
 
                 {activeTab === 'info' && (
                     <Box>
@@ -77,7 +81,9 @@ function AssignmentView() {
                         </Typography>
                     </Box>
                 )}
+                </Card>
             </Box>
+            
         </CustomContainer>
     );
 }

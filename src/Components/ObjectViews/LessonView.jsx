@@ -5,6 +5,8 @@ import {
     Tabs,
     Tab,
     Button,
+    Card,
+    Divider
 } from '@mui/material';
 import { useAppContext } from '../../AppContext';
 import { CustomContainer } from '@shared-theme/customDesign';
@@ -47,13 +49,16 @@ function LessonView() {
                 <Typography variant="subtitle1" sx={{ mb: 4, color: 'black' }}>
                     Lesson Number: {viewObject.lesson_no}
                 </Typography>
-
+                
+                <Divider sx={{ mb: 4 }} />
 
                 {/* Tabs for Navigation */}
                 <Tabs value={activeTab} onChange={handleTabChange} sx={{ mb: 3 }}>
                     <Tab label="Lesson Info" value="info" sx={{ '&:focus': { outline: 'none' } }} />
                     <Tab label="Video" value="video" sx={{ '&:focus': { outline: 'none' } }} />
                 </Tabs>
+
+                <Card variant="outlined" sx={{ position: 'relative', padding: 4, minHeight: '30vh', width: '100%', maxWidth: '800px', marginTop: '2rem' }}> 
 
                 {activeTab === 'info' && (
                     <Box>
@@ -69,19 +74,19 @@ function LessonView() {
                 {activeTab === 'video' && viewObject.video_url && (
                     <Box >
                         <Typography variant="h6" sx={{ mb: 2, color: 'black' }}>
-                            Video
+                            Video {viewObject.video_url}
                         </Typography>
                         <iframe
                             width="100%"
                             height="400"
                             src={viewObject.video_url}
                             title={viewObject.title}
-                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                         ></iframe>
                     </Box>
                 )}
+                </Card>
             </Box>
         </CustomContainer>
     );

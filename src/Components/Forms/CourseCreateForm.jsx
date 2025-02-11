@@ -37,10 +37,6 @@ export default function CreateCourse(props) {
 
     }, []);
 
-
-    
-
-
     function validateInputs() {
         let isValid = true;
 
@@ -90,6 +86,7 @@ export default function CreateCourse(props) {
             user_id: teacher,
         };
         const response = await performCourseManagerAction(courseData);
+        setPage('Home');
         return response;
     };
 
@@ -191,16 +188,16 @@ export default function CreateCourse(props) {
                   )}
                 </FormControl>
               )}
+              <Divider sx={{ marginBottom: '1rem' }} /> {/* Add margin bottom */}
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+              >
+                Create Course
+              </Button>
             </Box>
-            <Divider sx={{ marginBottom: '1rem' }} /> {/* Add margin bottom */}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              onClick={validateInputs}
-            >
-              Create Course
-            </Button>
+
           </Card>
         </CustomContainer>
       );
