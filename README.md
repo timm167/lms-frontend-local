@@ -1,8 +1,52 @@
 # Learning Management System
 
-## Access 
+## Quick Start (with backend functionality)
+**Note**: For more deployment options and remote access, checkout https://github.com/timm167/lms-backend/blob/main/USAGE.md
 
-Frontend running at https://timm167.github.io/lms-frontend/
+Ensure localhost 8000 is free, or otherwise manually change the base_url in the frontend at src/service/base_url.
 
-Backend running at (use through frontend)
+1. ## Deploy Backend 
+### Macbook /Linux
+```
+pip install python3
+git clone https://github.com/timm167/lms-backend
+cd lms-backend/lms-backend
+python3 -m venv venv
+source venv/bin/activate  
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+### Windows
+```
+pip install python3
+git clone https://github.com/timm167/lms-backend
+cd lms-backend/lms-backend
+python3 -m venv venv
+venv\Scripts\activate     # On Windows
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+2. ## Deploy Frontend 
+
+Seperate terminal
+
+```
+git clone https://github.com/timm167/lms-frontend-local.git
+cd lms-frontend-local
+npm install
+npm run dev
+```
+
+3. ## Access
+   
+Go to http://localhost:5173/lms-frontend-local/ (or check terminal for other url)
+
+## Questions
+
+Please feel free to reach out to me if you have any questions or you are having problems.
+
+Email: tim.charterii@gmail.com
+GitHub: https://github.com/timm167
 
