@@ -423,3 +423,67 @@ The test files are located in the `src/__tests__` folder, with the main test fil
   - 🛠️ Django TestCase
   - 📡 Render for Deployment
   - 🤖 Uptime Robot for uptime
+ 
+## Simplified File Structure
+
+```
+└── 📁src
+    └── 📁Components
+        └── 📁Forms
+            └── CourseCreateForm.jsx
+            └── CreateAssignmentForm.jsx
+            └── CreateLessonForm.jsx
+            └── Login.jsx
+            └── UserCreateForm.jsx
+            └── 📁formHelpers
+                ...
+        └── 📁Navigation
+            └── Footer.jsx
+            └── Header.jsx
+            └── Playground.jsx
+        └── 📁ObjectViews
+            └── AssignmentView.jsx
+            └── CourseView.jsx
+            └── LessonView.jsx
+            └── ObjectViewer.jsx
+            └── 📁Tabs
+                └── AssignmentsTab.jsx
+                └── CourseInfoTab.jsx
+                └── LessonsTab.jsx
+                └── StudentsTab.jsx
+        └── 📁Pages
+            └── Admin.jsx
+            └── Home.jsx
+        └── 📁Tables
+            └── AdminsTable.jsx
+            └── BaseTable.jsx
+            └── BrowseCoursesTable.jsx
+            └── CoursesTable.jsx
+            └── EnrollmentsTable.jsx
+            └── StudentsTable.jsx
+            └── TeachersTable.jsx
+            └── UsersTable.jsx
+            └── 📁filters
+                ...
+    └── 📁css
+        ...
+    └── 📁service
+        └── 📁accounts
+            └── handleLogin.js
+            └── handleLogout.js
+            └── handleSignup.js
+        └── 📁actions
+            └── courseManagerActions.js
+            └── deleteUser.js
+        └── 📁get
+            └── getLists.js
+            └── getObjects.js
+            └── getUserType.js
+    └── 📁shared-theme
+        ...
+    └── App.css
+    └── App.jsx
+    └── AppContext.jsx
+    └── index.css
+    └── main.jsx
+```
