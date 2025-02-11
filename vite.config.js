@@ -28,5 +28,5 @@ export default defineConfig({
       environment: 'jsdom',
       setupFiles: './setupTests.js',
   },
-  base: '/lms-frontend/'
+  base: '/lms-frontend-local/'
 })
